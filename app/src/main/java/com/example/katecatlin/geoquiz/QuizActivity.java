@@ -22,6 +22,7 @@ public class QuizActivity extends Activity {
     private ImageButton mPreviousButton;
     private TextView mQuestionTextView;
     private Button mCheatButton;
+    private Boolean mIsCheater;
 
     private TrueFalse[] mQuestionBank = new TrueFalse[] {
         new TrueFalse(R.string.question_alex, false),
@@ -55,7 +56,7 @@ public class QuizActivity extends Activity {
             Intent i = new Intent(QuizActivity.this, CheatActivity.class);
               boolean answerIsTrue = mQuestionBank[mCurrentIndex].isTrueQuestion();
               i.putExtra(CheatActivity.EXTRA_ANSWER_IS_TRUE, answerIsTrue);
-              startActivity(i);
+              startActivityForResult(i, 0);
             }
         });
 
@@ -73,7 +74,6 @@ public class QuizActivity extends Activity {
             @Override
             public void onClick(View view) {
                 checkAnswer(false);
-
             }
         });
 
@@ -120,14 +120,20 @@ public class QuizActivity extends Activity {
     private void checkAnswer(boolean userPressedTrue) {
         boolean answerIsTrue = mQuestionBank[mCurrentIndex].isTrueQuestion();
         int messageResId = 0;
-        if (userPressedTrue == answerIsTrue) {
-            messageResId = R.string.correct_toast;
+
+        if (mIsCheater) {
+            messageResId = R.string.judgement_toast;
         } else {
-            messageResId = R.string.incorrect_toast;
+
+            if (userPressedTrue == answerIsTrue) {
+                messageResId = R.string.correct_toast;
+            } else {
+                messageResId = R.string.incorrect_toast;
+            }
+
+            Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show();
+
         }
-
-        Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show();
-
     }
 
     private int mCurrentIndex = 0;
@@ -188,6 +194,13 @@ public class QuizActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (data == null) {
+            return;
+        }
+        mIsCheater = data.getBooleanExtra(CheatActivity.EXTRA_ANSWER_SHOWN, false);
+    }
 
 }
 
