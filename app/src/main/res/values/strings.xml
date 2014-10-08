@@ -14,5 +14,6 @@
     <string name="question_monk">Rasputin was a monk.</string>
     <string name="question_death">Rasputin predicted his own death - “If I am killed by my own people, by the peasants, then you will continue to rule in peace and harmony. However, if I am killed by the noble class, then within two years, you and your children and all the royal family will be no more.”</string>
     <string name="question_poison">Rasputin died of poison</string>
+    <string name="previous_button">Previous</string>
 
 </resources>
