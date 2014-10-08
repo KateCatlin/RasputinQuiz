@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GeoQuiz</string>
+    <string name="action_settings">Settings</string>
+    <string name="true_button">True</string>
+    <string name="false_button">False</string>
+    <string name="next_button">Next</string>
+    <string name="correct_toast">Correct</string>
+    <string name="incorrect_toast">WRONG</string>
+    <string name="menu_settings">Settings</string>
+    <string name="question_alex">Rasputin supposedly cured the Tsar and Tsarina’s haemophiliac daughter Alexis.</string>
+    <string name="question_literate">Rasputin was illiterate.</string>
+    <string name="question_monk">Rasputin was a monk.</string>
+    <string name="question_death">Rasputin predicted his own death - “If I am killed by my own people, by the peasants, then you will continue to rule in peace and harmony. However, if I am killed by the noble class, then within two years, you and your children and all the royal family will be no more.”</string>
+    <string name="question_poison">Rasputin died of poison</string>
+
+</resources>
