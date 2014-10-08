@@ -22,7 +22,7 @@ public class QuizActivity extends Activity {
     private ImageButton mPreviousButton;
     private TextView mQuestionTextView;
     private Button mCheatButton;
-    private Boolean mIsCheater;
+    private boolean mIsCheater;
 
     private TrueFalse[] mQuestionBank = new TrueFalse[] {
         new TrueFalse(R.string.question_alex, false),
@@ -84,12 +84,11 @@ public class QuizActivity extends Activity {
                                            @Override
                                        public void onClick(View v) {
                                                mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
+                                               mIsCheater = false;
                                                updateQuestion();
                                            }
 
-                                       }
-
-        );
+                                       });
 
         mPreviousButton = (ImageButton) findViewById(R.id.previous_button);
         mPreviousButton.setOnClickListener(new View.OnClickListener() {
@@ -119,6 +118,7 @@ public class QuizActivity extends Activity {
 
     private void checkAnswer(boolean userPressedTrue) {
         boolean answerIsTrue = mQuestionBank[mCurrentIndex].isTrueQuestion();
+
         int messageResId = 0;
 
         if (mIsCheater) {
@@ -130,10 +130,10 @@ public class QuizActivity extends Activity {
             } else {
                 messageResId = R.string.incorrect_toast;
             }
+        }
 
             Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show();
 
-        }
     }
 
     private int mCurrentIndex = 0;
