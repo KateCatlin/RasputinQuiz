@@ -1,23 +1,20 @@
 
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
->
+    android:layout_width="match_parent">
 
     <TextView
         android:id="@+id/question_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:padding="24dp"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_gravity="center"
+        android:padding="24dp">
 
         <Button
             android:id="@+id/true_button"
@@ -38,6 +35,8 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="40dp"
         android:orientation="horizontal">
         <ImageButton
             android:id="@+id/previous_button"
@@ -45,12 +44,14 @@
             android:layout_height="50dp"
             android:scaleType="centerInside"
             android:src="@drawable/previous_icon"
+            android:layout_gravity="bottom|left"
             android:contentDescription="@string/previous_button"
             />
     <ImageButton
         android:id="@+id/next_button"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_gravity="bottom|right"
         android:scaleType="centerInside"
         android:src="@drawable/next_icon"
         android:contentDescription="@string/next_button"
@@ -60,4 +61,4 @@
     </LinearLayout>
 
 
-    </LinearLayout>
+</FrameLayout>
