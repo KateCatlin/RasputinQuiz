@@ -39,20 +39,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <Button
+        <ImageButton
             android:id="@+id/previous_button"
             android:layout_width="wrap_content"
-            android:text="@string/previous_button"
             android:layout_height="wrap_content"
+            android:src="@drawable/previous_icon"
+            android:contentDescription="@string/previous_button"
             />
     <Button
         android:id="@+id/next_button"
         android:layout_width="wrap_content"
-        android:text="@string/next_button"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/images"
-        android:drawablePadding="4dp"
-
+        android:src="@drawable/next_icon"
+        android:contentDescription="@string/next_button"
         />
 
 
