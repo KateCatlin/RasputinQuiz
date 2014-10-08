@@ -52,7 +52,10 @@ public class QuizActivity extends Activity {
         mCheatButton.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-                //start cheatActivity
+            Intent i = new Intent(QuizActivity.this, CheatActivity.class);
+              boolean answerIsTrue = mQuestionBank[mCurrentIndex].isTrueQuestion();
+              i.putExtra(CheatActivity.EXTRA_ANSWER_IS_TRUE, answerIsTrue);
+              startActivity(i);
             }
         });
 
