@@ -15,5 +15,9 @@
     <string name="question_poison">Rasputin died of poison</string>
     <string name="previous_button">Previous Question</string>
     <string name="next_button">Next Question</string>
+    <string name="cheat_button">(Cheat)</string>
+    <string name="warning_text">Are you SURE you want to cheat?</string>
+    <string name="show_answer_button">Show Answer</string>
+    <string name="judgement_toast">Cheating is wrong. Hope you can live with that. You won the battle but lost the life war.</string>
 
 </resources>

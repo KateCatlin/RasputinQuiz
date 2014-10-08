@@ -1,6 +1,7 @@
 package com.example.katecatlin.geoquiz;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -14,11 +15,13 @@ import android.widget.Toast;
 
 public class QuizActivity extends Activity {
     private static final String TAG = "QuizActivity";
+    private static final String KEY_INDEX = "index";
     private Button mTrueButton;
     private Button mFalseButton;
     private ImageButton mNextButton;
     private ImageButton mPreviousButton;
     private TextView mQuestionTextView;
+    private Button mCheatButton;
 
     private TrueFalse[] mQuestionBank = new TrueFalse[] {
         new TrueFalse(R.string.question_alex, false),
@@ -28,26 +31,6 @@ public class QuizActivity extends Activity {
         new TrueFalse(R.string.question_poison, false )
 
     };
-
-    private void updateQuestion() {
-        int question = mQuestionBank[mCurrentIndex].getQuestion();
-        mQuestionTextView.setText(question);
-    }
-
-    private void checkAnswer(boolean userPressedTrue) {
-        boolean answerIsTrue = mQuestionBank[mCurrentIndex].isTrueQuestion();
-        int messageResId = 0;
-        if (userPressedTrue == answerIsTrue) {
-            messageResId = R.string.correct_toast;
-        } else {
-            messageResId = R.string.incorrect_toast;
-        }
-
-        Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show();
-
-    }
-
-    private int mCurrentIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +45,14 @@ public class QuizActivity extends Activity {
             public void onClick(View v) {
                 mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
                 updateQuestion();
+            }
+        });
+
+        mCheatButton = (Button) findViewById(R.id.cheat_button);
+        mCheatButton.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+                //start cheatActivity
             }
         });
 
@@ -109,8 +100,40 @@ public class QuizActivity extends Activity {
 
         );
 
+        if (savedInstanceState != null) {
+            mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
+        }
+
+
 
         updateQuestion();
+    }
+
+    private void updateQuestion() {
+        int question = mQuestionBank[mCurrentIndex].getQuestion();
+        mQuestionTextView.setText(question);
+    }
+
+    private void checkAnswer(boolean userPressedTrue) {
+        boolean answerIsTrue = mQuestionBank[mCurrentIndex].isTrueQuestion();
+        int messageResId = 0;
+        if (userPressedTrue == answerIsTrue) {
+            messageResId = R.string.correct_toast;
+        } else {
+            messageResId = R.string.incorrect_toast;
+        }
+
+        Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show();
+
+    }
+
+    private int mCurrentIndex = 0;
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        Log.i(TAG, "onSaveInstanceState");
+        savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);
     }
 
     @Override
