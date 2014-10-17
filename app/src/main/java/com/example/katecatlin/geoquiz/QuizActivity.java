@@ -23,6 +23,8 @@ public class QuizActivity extends Activity {
     private TextView mQuestionTextView;
     private Button mCheatButton;
     private boolean mIsCheater;
+    private int score = 0;
+    private String LOG = "ARE YOU HERE";
 
     private TrueFalse[] mQuestionBank = new TrueFalse[] {
         new TrueFalse(R.string.question_alex, false),
@@ -44,8 +46,14 @@ public class QuizActivity extends Activity {
         mQuestionTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
-                updateQuestion();
+
+                Log.d(TAG, Integer.toString(mCurrentIndex));
+                if (mCurrentIndex < 5) {
+                    mCurrentIndex = mCurrentIndex + 1;
+                    Log.d(TAG, Integer.toString(mCurrentIndex));
+                    updateQuestion();
+                }
+                else endGame();
             }
         });
 
@@ -83,7 +91,6 @@ public class QuizActivity extends Activity {
         mNextButton.setOnClickListener(new View.OnClickListener() {
                                            @Override
                                        public void onClick(View v) {
-                                               mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
                                                mIsCheater = false;
                                                updateQuestion();
                                            }
@@ -94,7 +101,7 @@ public class QuizActivity extends Activity {
         mPreviousButton.setOnClickListener(new View.OnClickListener() {
                                            @Override
                                            public void onClick(View v) {
-                                               mCurrentIndex = (mCurrentIndex + -1) % mQuestionBank.length;
+
                                                updateQuestion();
                                            }
 
@@ -112,8 +119,12 @@ public class QuizActivity extends Activity {
     }
 
     private void updateQuestion() {
-        int question = mQuestionBank[mCurrentIndex].getQuestion();
-        mQuestionTextView.setText(question);
+        if (mCurrentIndex < 5) {
+            int question = mQuestionBank[mCurrentIndex].getQuestion();
+            mQuestionTextView.setText(question);
+            mCurrentIndex = (mCurrentIndex + 1);
+        }
+        else endGame();
     }
 
     private void checkAnswer(boolean userPressedTrue) {
@@ -127,6 +138,8 @@ public class QuizActivity extends Activity {
 
             if (userPressedTrue == answerIsTrue) {
                 messageResId = R.string.correct_toast;
+                score++;
+                if (mCurrentIndex==5) {endGame();}
             } else {
                 messageResId = R.string.incorrect_toast;
             }
@@ -200,6 +213,17 @@ public class QuizActivity extends Activity {
             return;
         }
         mIsCheater = data.getBooleanExtra(CheatActivity.EXTRA_ANSWER_SHOWN, false);
+    }
+
+    public void endGame() {
+        String final_score = ("YOUR FINAL SCORE IS " + score + "/" + mQuestionBank.length + "!");
+        Toast.makeText(this, R.string.game_over, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, final_score, Toast.LENGTH_LONG).show();
+        mPreviousButton.setEnabled(false);
+        mNextButton.setEnabled(false);
+        mCheatButton.setEnabled(false);
+        mTrueButton.setEnabled(false);
+        mFalseButton.setEnabled(false);
     }
 
 }

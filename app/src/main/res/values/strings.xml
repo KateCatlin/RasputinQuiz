@@ -19,5 +19,7 @@
     <string name="warning_text">Are you SURE you want to cheat?</string>
     <string name="show_answer_button">Show Answer</string>
     <string name="judgement_toast">Cheating is wrong. Hope you can live with that. You won the battle but lost the life war.</string>
+    <string name="game_over">GAME OVER! </string>
+    <string name="final_score">YOUR FINAL SCORE IS 0/5!</string>
 
 </resources>
