@@ -25,7 +25,6 @@ public class QuizActivity extends Activity {
     private boolean mIsCheater;
     private int score = 0;
     private int mCurrentIndex = 0;
-    private String LOG = "ARE YOU HERE";
 
     private TrueFalse[] mQuestionBank = new TrueFalse[] {
         new TrueFalse(R.string.question_alex, false),
