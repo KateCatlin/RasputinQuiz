@@ -24,7 +24,7 @@ public class QuizActivity extends Activity {
     private Button mCheatButton;
     private boolean mIsCheater;
     private int score = 0;
-    private String LOG = "ARE YOU HERE";
+    private int mCurrentIndex = 0;
 
     private TrueFalse[] mQuestionBank = new TrueFalse[] {
         new TrueFalse(R.string.question_alex, false),
@@ -48,12 +48,7 @@ public class QuizActivity extends Activity {
             public void onClick(View v) {
 
                 Log.d(TAG, Integer.toString(mCurrentIndex));
-                if (mCurrentIndex < 5) {
-                    mCurrentIndex = mCurrentIndex + 1;
-                    Log.d(TAG, Integer.toString(mCurrentIndex));
-                    updateQuestion();
-                }
-                else endGame();
+                updateQuestion();
             }
         });
 
@@ -148,8 +143,6 @@ public class QuizActivity extends Activity {
             Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show();
 
     }
-
-    private int mCurrentIndex = 0;
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
