@@ -48,12 +48,7 @@ public class QuizActivity extends Activity {
             public void onClick(View v) {
 
                 Log.d(TAG, Integer.toString(mCurrentIndex));
-                if (mCurrentIndex < 5) {
-                    mCurrentIndex = mCurrentIndex + 1;
-                    Log.d(TAG, Integer.toString(mCurrentIndex));
-                    updateQuestion();
-                }
-                else endGame();
+                updateQuestion();
             }
         });
 
